@@ -18,10 +18,6 @@ MOVEMENT_DIRECTIONS = {
 DIRECTION_NAMES = list(MOVEMENT_DIRECTIONS.keys())
 
 
-def get_random_direction():
-    """Get a random movement direction"""
-    return random.choice(DIRECTION_NAMES)
-
 
 def get_direction_delta(direction):
     """Get the (dx, dy) delta for a given direction"""

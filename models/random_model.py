@@ -7,7 +7,7 @@ import random
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from environment.visualization import Environment, Visualizer
-from environment.movement import get_random_direction, get_direction_delta
+from environment.movement import DIRECTION_NAMES, get_direction_delta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,14 +16,14 @@ load_dotenv()
 def random_movement(env):
     """Movement logic for model 1: random discrete movement"""
     for i, predator in enumerate(env.predators):
-        direction = get_random_direction()
+        direction = random.choice(DIRECTION_NAMES)
         dx, dy = get_direction_delta(direction)
         new_x = predator['x'] + dx
         new_y = predator['y'] + dy
         env.set_predator_position(i, new_x, new_y)
     
     for i, prey in enumerate(env.preys):
-        direction = get_random_direction()
+        direction = random.choice(DIRECTION_NAMES)
         dx, dy = get_direction_delta(direction)
         new_x = prey['x'] + dx
         new_y = prey['y'] + dy

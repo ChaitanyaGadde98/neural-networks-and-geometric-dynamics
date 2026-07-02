@@ -3,7 +3,7 @@ import matplotlib.animation as animation
 import random
 import os
 from dotenv import load_dotenv
-from environment.movement import get_random_direction, get_direction_delta
+from environment.movement import DIRECTION_NAMES, get_direction_delta
 
 load_dotenv()
 
@@ -37,7 +37,7 @@ class Visualizer:
         self.ax.set_xlim(-1, env.width + 1)
         self.ax.set_ylim(-1, env.height + 1)
         self.ax.set_aspect('equal')
-        self.ax.set_title('Predator-Prey Environment')
+        self.ax.set_title('Environment')
         
         # Draw boundary wall
         wall = plt.Rectangle(
@@ -118,14 +118,14 @@ def main():
     # Default random movement callback if no model provided
     def random_movement(env):
         for i, predator in enumerate(env.predators):
-            direction = get_random_direction()
+            direction = random.choice(DIRECTION_NAMES)
             dx, dy = get_direction_delta(direction)
             new_x = predator['x'] + dx
             new_y = predator['y'] + dy
             env.set_predator_position(i, new_x, new_y)
         
         for i, prey in enumerate(env.preys):
-            direction = get_random_direction()
+            direction = random.choice(DIRECTION_NAMES)
             dx, dy = get_direction_delta(direction)
             new_x = prey['x'] + dx
             new_y = prey['y'] + dy
